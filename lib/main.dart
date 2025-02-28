@@ -29,10 +29,29 @@ class MyHomePage extends StatefulWidget {
 
 class _CalculatorApp extends State<MyHomePage> {
   String displayText = "0";
+  double num1 = 0;
+  double num2 = 0;
+  String operand = "";
 
   void onButtonPressed(String value) {
     setState(() {
-      displayText = value;
+      if (value == "C") {
+      displayText = "0";
+      num1 = 0;
+      num2 = 0;
+      operand = "";
+      } 
+      else if (value == "=") {
+      displayText = "0";
+      } 
+      else {
+        if (displayText == "0") {
+        displayText = value;
+        } 
+        else {
+        displayText += value;
+        }
+    }
     });
   }
 
