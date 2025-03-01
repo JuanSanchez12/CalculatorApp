@@ -42,14 +42,44 @@ class _CalculatorApp extends State<MyHomePage> {
       operand = "";
       } 
       else if (value == "=") {
-      displayText = "0";
+        if (operand.isNotEmpty) {
+          switch (operand) {
+            case "+":
+              displayText = (num1 + num2).toString();
+              break;
+            case "-":
+              displayText = (num1 - num2).toString();
+              break;
+            case "*":
+              displayText = (num1 * num2).toString();
+              break;
+            case "/":
+              displayText = (num1 / num2).toString();
+              break;
+          }
+        }
+      }
+      else if (["+", "-", "*", "/"].contains(value)) 
+      {
+        num1 = double.parse(displayText);
+        operand = value;
+        displayText = "0";
       } 
       else {
-        if (displayText == "0") {
-        displayText = value;
+        if (operand.isNotEmpty) {
+          if (displayText == "0") {
+            displayText = value;
+          } else {
+            displayText += value;
+          }
+          num2 = double.parse(displayText);
         } 
         else {
-        displayText += value;
+          if (displayText == "0") {
+            displayText = value;
+          } else {
+            displayText += value;
+          }
         }
     }
     });
